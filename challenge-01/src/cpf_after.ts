@@ -1,4 +1,4 @@
-function haveMoreElevenNumber(number) {
+function haveMoreElevenNumber(number: string) {
   const test = number.length >= 11 || number.length <= 14 ? 'Num tem' : 'Tem'
   return console.log(test.split("").every(c => c === test[0]))
 } 
