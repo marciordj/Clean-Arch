@@ -2,14 +2,9 @@ function validate(str) {
   if (str !== null) {
     if (str !== undefined) {
       if (str.length >= 11 || str.length <= 14) {
+        str = str.replace('.', '').replace('.', '').replace('-', '').replace(' ', '');
 
-        str = str
-          .replace('.', '')
-          .replace('.', '')
-          .replace('-', '')
-          .replace(" ", "");
-
-        if (!str.split("").every(c => c === str[0])) {
+        if (!str.split('').every(c => c === str[0])) {
           try {
             let d1, d2;
             let dg1, dg2, rest;
@@ -28,36 +23,30 @@ function validate(str) {
 
               d2 = d2 + (12 - nCount) * digito;
               // }
-            };
+            }
 
-            rest = (d1 % 11);
+            rest = d1 % 11;
 
-            dg1 = (rest < 2) ? dg1 = 0 : 11 - rest;
+            dg1 = rest < 2 ? (dg1 = 0) : 11 - rest;
             d2 += 2 * dg1;
-            rest = (d2 % 11);
-            if (rest < 2)
-              dg2 = 0;
-            else
-              dg2 = 11 - rest;
+            rest = d2 % 11;
+            if (rest < 2) dg2 = 0;
+            else dg2 = 11 - rest;
 
-            let nDigVerific = str.substring(str.length - 2, str.length);
-            nDigResult = "" + dg1 + "" + dg2;
+            const nDigVerific = str.substring(str.length - 2, str.length);
+            nDigResult = '' + dg1 + '' + dg2;
             return nDigVerific == nDigResult;
           } catch (e) {
-            console.error("Erro !" + e);
+            console.error('Erro !' + e);
 
             return false;
           }
-        } else return false
-
+        } else return false;
       } else return false;
     }
-
-
   } else return false;
-
 }
 
-console.log(validate("111.111.111-11"));
-console.log(validate("123.456.789-99"));
-console.log(validate("935.411.347-80"));
+console.log(validate('111.111.111-11'));
+console.log(validate('123.456.789-99'));
+console.log(validate('935.411.347-80'));
